@@ -4852,8 +4852,7 @@ if __name__ == '__main__':
 		size = read_device_size(options.recov_size)
 
 		passphraseRecov=''
-		while passphraseRecov=='':
-			passphraseRecov=raw_input("Enter the passphrase for the wallet that will contain all the recovered keys: ")
+        passphraseRecov=raw_input("Enter the passphrase for the wallet that will contain all the recovered keys: ")
 		passphrase=passphraseRecov
 
 		passes=[]
@@ -4871,13 +4870,13 @@ if __name__ == '__main__':
 		recoveredKeys=list(set(recoveredKeys))
 #		print recoveredKeys[0:5]
 
-
+        print "\nrecov succeeded"
 		db_env = create_env(options.recov_outputdir)
 		recov_wallet_name = "recovered_wallet_%s.dat"%ts()
 
 		create_new_wallet(db_env, recov_wallet_name, 32500)
 
-		if passphraseRecov!="I don't want to put a password on the recovered wallet and I know what can be the consequences.":
+		if passphraseRecov!="":
 			db = open_wallet(db_env, recov_wallet_name, True)
 
 			NPP_salt=os.urandom(8)
